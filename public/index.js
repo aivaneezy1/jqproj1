@@ -21,17 +21,26 @@ const handleGetAllTask = async () => {
     const res = await axios.get("/api/v1/tasks");
     const tasks = res.data;
     const taskList = $("#tasksList");
+
     tasks.forEach((task) => {
       const anchor = $("<a>")
         .attr("href", `task.html?id=${task._id}`)
         .text(`${task.name} - ${task.completed}`);
-
       taskList.append($("<li>").append(anchor));
-      taskList.append($("<button>").text("Edit"));
-      taskList.append($("<button>").text("Delete"));
+
+      const editButton = $("<a>")
+        .attr("href", `edit.html?id=${task._id}`)
+        .append($("<button>").text("Edit"));
+      taskList.append(editButton);
+
+      const deleteButton = $("<a>")
+        .attr("href", `delete.html?id=${task._id}`)
+        .append($("<button>").text("Delete"));
+      taskList.append(deleteButton);
     });
   } catch (err) {
     console.log(err);
   }
 };
+
 $(document).ready(handleGetAllTask);
