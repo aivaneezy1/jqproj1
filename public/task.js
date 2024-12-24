@@ -5,7 +5,9 @@ export const handleGetTask = async (id) => {
     const res = await axios.get(`/api/v1/tasks/${myParam}`);
     const { name, completed } = res.data;
     const taskList = $("#taskList");
-    taskList.append($("<li>").text(`${name} - ${completed}`));
+    taskList.append(
+      $("<li>").text(`${name} - ${completed}`).addClass("list-group-item")
+    );
   } catch (err) {
     console.log(err);
   }

@@ -58,15 +58,17 @@ const handleGetAllTask = async () => {
       const anchor = $("<a>")
         .attr("href", `task.html?id=${task._id}`)
         .text(`${task.name} - ${task.completed}`);
-      taskList.append($("<li>").append(anchor));
+      taskList.append($("<li>").addClass("list-group-item ").append(anchor));
 
       const editButton = $("<a>")
         .attr("href", `edit.html?id=${task._id}`)
-        .append($("<button>").text("Edit"));
+        .append(
+          $("<button>").text("Edit").addClass("btn btn-success mx-2 my-2")
+        );
       taskList.append(editButton);
 
       const deleteButton = $("<button>").text("Delete");
-      deleteButton.addClass("test");
+      deleteButton.addClass("btn btn-danger");
       taskList.append(deleteButton);
 
       // Attach the task._id to the delete button's click event
@@ -81,7 +83,6 @@ $(document).ready(handleGetAllTask);
 const deleteTask = async (id) => {
   try {
     const res = await axios.delete(`/api/v1/tasks/${id}`);
-    console.log("res", res);
   } catch (err) {
     console.log(err);
   }

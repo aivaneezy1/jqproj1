@@ -5,10 +5,15 @@ const handleEditTask = async () => {
   const completed = $("input[type=checkbox][name=editCompleted]:checked").val();
 
   try {
-    await axios.patch(`/api/v1/tasks/${myParam}`, {
+    const res = await axios.patch(`/api/v1/tasks/${myParam}`, {
       name: editName,
       completed: completed ? true : false,
     });
+    console.log("res", res.request);
+    console.log("status", res.status);
+    if (res.status == 200) {
+      window.location.href = "/"; // redirect user to homepage
+    }
   } catch (err) {
     console.log(err);
   }
@@ -17,7 +22,7 @@ const handleEditTask = async () => {
 $(".editTask").click(() => handleEditTask());
 
 const handleGetTask = async () => {
-  $("span").text(myParam);
+  $("span").text(myParam).addClass("text-secondary");
   try {
     const res = await axios.get(`/api/v1/tasks/${myParam}`);
     const { name, completed } = res.data;
