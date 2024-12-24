@@ -1,4 +1,4 @@
-const handleGetTask = async (id) => {
+export const handleGetTask = async (id) => {
   const urlParams = new URLSearchParams(window.location.search);
   const myParam = urlParams.get("id");
   try {

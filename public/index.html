@@ -12,8 +12,9 @@
     <div class="div1">
         <h1>Task Manager</h1>
         <div class="childDiv">
-            <label for="taskName">Task Name</label>
-            <input id="taskName" name="taskName" type="text" placeholder="Enter a task name" />
+            <form method="post">
+                <label for="taskName">Task Name</label>
+                <input id="taskName" name="taskName" type="text" placeholder="Enter a task name" />
         </div>
         <div class="childDiv">
             <label for="checkBox">Completed</label>
@@ -21,11 +22,12 @@
         </div>
         <button class="addTask">Add Task</button>
 
+        </form>
         <h1>Tasks List</h1>
         <ul id="tasksList">
 
         </ul>
-        <a href="boh"><button>Boh</button></a>
+
     </div>
 
 </body>
